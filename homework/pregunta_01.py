@@ -82,6 +82,9 @@ def pregunta_01():
     
     # Función para extraer archivos del ZIP
     def extraer_archivo():
+        with zipfile.ZipFile(ruta_zip, 'r') as archivo_zip:
+                    archivo_zip.extractall(ruta_ext)
+                    print(f"Archivos extraídos exitosamente en: {ruta_ext}")
         try:
             if os.path.exists(ruta_ext) and os.listdir(ruta_ext):
                 print(f"Los archivos ya se encuentran extraídos en: {ruta_ext}")
@@ -112,10 +115,6 @@ def pregunta_01():
                         with open(ruta_archivo, 'r', encoding='utf-8') as archivo_texto:
                             contenido = archivo_texto.read().strip()
                             datos.append({'phrase': contenido, 'target': categoria})
-                            print(f"Processed file: {ruta_archivo}")
-            else:
-                print(f"Category directory does not exist: {ruta_categoria}")
-        return datos
                             print(f"Processed file: {ruta_archivo}")
             else:
                 print(f"Category directory does not exist: {ruta_categoria}")
